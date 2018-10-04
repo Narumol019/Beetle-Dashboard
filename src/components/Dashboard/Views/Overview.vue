@@ -6,7 +6,7 @@
       <div class="col-lg-4 col-sm-12" v-for="stats in statsCards" :key="stats.title" @click="toTablelist">
         <stats-card>
           <div class="numbers" slot="content">
-            <router-link :to="{name : 'list'}">
+            <router-link :to="{name : 'place'}">
              {{stats.title}}
                <div class="logo-img">
                 <img src="static/img/logo.png" alt="">
@@ -64,7 +64,7 @@
     },
     methods: {
       toTablelist: function () {
-        this.$routes.push({name: 'list'})
+        this.$routes.push({name: 'place'})
       }
     }
   }

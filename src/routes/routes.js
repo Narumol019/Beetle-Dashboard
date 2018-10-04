@@ -7,6 +7,7 @@ import Overview from 'src/components/Dashboard/Views/Overview.vue'
 import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
 import List from 'src/components/Dashboard/Views/List.vue'
+import Place from 'src/components/Dashboard/Views/Place.vue'
 const routes = [
   {
     path: '/',
@@ -37,6 +38,11 @@ const routes = [
         path: 'list',
         name: 'list',
         component: List
+      },
+      {
+        path: 'place',
+        name: 'place',
+        component: Place
       }
     ]
   },
