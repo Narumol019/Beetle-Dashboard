@@ -5,6 +5,7 @@
           <!-- your content here -->
           <router-view></router-view>
         </transition>
+        
     </div>
   </div>
 </template>
