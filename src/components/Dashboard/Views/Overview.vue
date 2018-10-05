@@ -23,6 +23,7 @@
 <script>
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
+  import {firestore} from './firebase.js'
   export default {
     components: {
       StatsCard,
@@ -33,6 +34,7 @@
      */
     data () {
       return {
+        places: [],
         statsCards: [
           {
             type: 'warning',
@@ -60,6 +62,11 @@
             value: 'Beetle'
           }
         ]
+      }
+    },
+    firestore () {
+      return {
+        places: firestore.collection('place')
       }
     },
     methods: {
