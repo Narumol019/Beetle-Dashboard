@@ -1,13 +1,16 @@
 <template>
     <div class="row">
       <div class="col-md-12">
-          <div>
-              <input type="text" v-model="search" placeholder="Filter"/>
-            </div>
         <div class="card">
           <paper-table :title="table1.title" :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
 
           </paper-table>
+          <div v-for="place in places" :key="place.places">
+              {{place.id}}
+          </div>
+          <div v-for="box in boxs" :key="box.boxs">
+              {{box.id}}
+          </div>
         </div>
       </div>
 
@@ -168,8 +171,18 @@
         table1: {
           columns: [...tableColumns],
           data: [...tableData]
-        }
+        },
+        places: [],
+        boxs: []
       }
+    },
+    created () {
+      firestore
+      .collection('place').doc('Nai-yang').collection('boxs').doc('b1')
+      .get().then((doc) => {
+        this.places.push(doc.data())
+        console.log(doc.data())
+      })
     },
     firestore () {
       return {
