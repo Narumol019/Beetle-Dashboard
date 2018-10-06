@@ -178,11 +178,11 @@
     },
     created () {
       firestore
-      .collection('place').doc('Nai-yang').collection('boxs').doc('b1')
-      .get().then((doc) => {
-        this.places.push(doc.data())
-        console.log(doc.data())
-      })
+      .collection('place').doc('Nai-yang').collection('boxs').get().then(snapShot) {
+        snapShot.forEach(doc) {
+          places.push(doc.data())
+        }
+      }
     },
     firestore () {
       return {
