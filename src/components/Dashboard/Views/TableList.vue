@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <paper-table :title="table1.title" :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
+          <paper-table :title="table1.title" :sub-title="table1.subTitle" :data="places" :columns="table1.columns">
 
           </paper-table>
           <div v-for="place in places" :key="place.places">
@@ -21,146 +21,7 @@
   import {firestore} from './firebase.js'
   import PaperTable from 'components/UIComponents/PaperTable.vue'
   const tableColumns = ['Name', 'Place', 'Open', 'Close', 'Price']
-  const tableData = [{
-    name: 'beetle 1',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 2',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 3',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 4',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 5',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 1',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 2',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 3',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 4',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 5',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 1',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 2',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 3',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 4',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 5',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 1',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 2',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 3',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 4',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 5',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  }]
+  const tableData = []
 
   export default {
     components: {
@@ -176,13 +37,15 @@
         boxs: []
       }
     },
-    created () {
-      firestore
-      .collection('place').doc('Nai-yang').collection('boxs').get().then(snapShot) {
-        snapShot.forEach(doc) {
-          places.push(doc.data())
-        }
-      }
+    async created () {
+      const collections = await firestore.collection('place').get()
+      collections.forEach(async (collection) => {
+        const place = await firestore.collection('place').doc(collection.id).collection("boxs").get()
+        place.forEach( async (x) => {
+          console.log(x.data())
+          this.places.push(x.data())
+        })
+      });
     },
     firestore () {
       return {
