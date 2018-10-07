@@ -2,143 +2,143 @@ import Vue from 'vue'
 import PaperTable from 'src/components/UIComponents/PaperTable.vue'
 
 const tableData = [{
-  name : 'beetle 1',
+  name: 'beetle 1',
   place: 'Patong',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 2',
   place: 'Patong',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 3',
   place: 'Patong',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: ' ',
   place: 'Patong',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 5',
   place: 'Patong',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 1',
   place: 'Rawai',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 2',
   place: 'Rawai',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 3',
   place: 'Rawai',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 4',
   place: 'Rawai',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 5',
   place: 'Rawai',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 1',
   place: 'Kata',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 2',
   place: 'Kata',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 3',
   place: 'Kata',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 4',
   place: 'Kata',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 5',
   place: 'Kata',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 1',
   place: 'Nai-yang',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 2',
   place: 'Nai-yang',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 3',
   place: 'Nai-yang',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 4',
   place: 'Nai-yang',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 },
 {
   name: 'beetle 5',
   place: 'Nai-yang',
   open: '14:30:05',
-  colse: '14:32:55',
+  close: '14:32:55',
   price: 20
 }
 ]
