@@ -15,13 +15,13 @@
 </template>
 
 <script>
-  export default {
-    data(){
-      return{
-        message: ''
-      }
+export default {
+  data () {
+    return {
+      message: ''
     }
   }
+}
 </script>
 
 <style lang="scss"></style>

@@ -40,12 +40,12 @@
     async created () {
       const collections = await firestore.collection('place').get()
       collections.forEach(async (collection) => {
-        const place = await firestore.collection('place').doc(collection.id).collection("boxs").get()
-        place.forEach( async (x) => {
+        const place = await firestore.collection('place').doc(collection.id).collection('boxs').get()
+        place.forEach(async (x) => {
           console.log(x.data())
           this.places.push(x.data())
         })
-      });
+      })
     },
     firestore () {
       return {
