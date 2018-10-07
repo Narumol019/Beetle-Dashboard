@@ -40,7 +40,7 @@ const routes = [
         component: List
       },
       {
-        path: 'place',
+        path: 'place/:title',
         name: 'place',
         component: Place
       }

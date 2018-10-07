@@ -21,7 +21,7 @@
       <div class="col-md-6 ">
         <div class="card" >
           <paper-table :title="table1.title" :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
-            {{itemData}}
+            
           </paper-table>
         </div>
       </div>
@@ -40,24 +40,8 @@
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const itemColumns = ['Box list']
-  const itemData = [
-   { boxlist: 1 },
-   { boxlist: 2 },
-   { boxlist: 3 },
-   { boxlist: 4 },
-   { boxlist: 5 },
-   { boxlist: 6 },
-   { boxlist: 7 },
-   { boxlist: 8 },
-   { boxlist: 9 },
-   { boxlist: 10 },
-   { boxlist: 11 },
-   { boxlist: 12 },
-   { boxlist: 13 },
-   { boxlist: 14 },
-   { boxlist: 15 }
-  ]
+  import {firestore} from './firebase.js'
+  const itemColumns = ['Name']
 
   export default {
     components: {
@@ -72,7 +56,7 @@
       return {
         table1: {
           columns: [...itemColumns],
-          data: [...itemData]
+          data: []
         },
         statsCards: [
           {
@@ -141,6 +125,19 @@
       toTablelist: function () {
         this.$routes.push({name: 'list'})
       }
+    },
+    computed: {
+      placeName: function () {
+        const name = this.$route.params.title
+        return name
+      }
+    },
+    async beforeMount () {
+      const collections = await firestore.collection('place').doc(this.placeName).collection('boxs').get()
+      collections.forEach(async (data) => {
+        this.table1.data.push(data.data())
+        console.log(this.table1.data)
+      })
     }
   }
 

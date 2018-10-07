@@ -3,16 +3,14 @@
 
     <!--Stats cards-->
     <div class="row">
-      <div class="col-lg-4 col-sm-12" v-for="stats in statsCards" :key="stats.title" @click="toTablelist">
+      <div class="col-lg-4 col-sm-12" v-for="stats in statsCards" :key="stats.title" @click="toTablelist(stats.title)">
         <stats-card>
           <div class="numbers" slot="content">
-            <router-link :to="{name : 'place'}">
-             {{stats.title}}
-               <div class="logo-img">
+            {{stats.title}}
+              <div class="logo-img">
                 <img src="static/img/logo.png" alt="">
-               </div>
+              </div>
              <p>{{stats.value}}</p>
-            </router-link>
           </div>
         </stats-card>
       </div>
@@ -64,14 +62,9 @@
         ]
       }
     },
-    firestore () {
-      return {
-        places: firestore.collection('place')
-      }
-    },
     methods: {
-      toTablelist: function () {
-        this.$routes.push({name: 'place'})
+      toTablelist: function (title) {
+        this.$router.push({path: 'place/' + title})
       }
     }
   }

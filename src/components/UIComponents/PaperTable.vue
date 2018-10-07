@@ -9,11 +9,11 @@
     <div class="content table-responsive table-full-width">
       <table class="table" :class="tableClass">
         <thead>
-          <th v-for="column in columns" :key="column.column">{{column}}</th>
+          <th style="text-align: center;" v-for="column in columns" :key="column.column">{{column}}</th>
         </thead>
         <tbody>
           <tr v-for="item in data" :key="item.data">
-            <td v-for="column in columns" v-if="hasValue(item, column)" :key="column.colums">{{itemValue(item, column)}}</td>
+            <td style="text-align: center;" v-for="column in columns" v-if="hasValue(item, column)" :key="column.colums">{{itemValue(item, column)}}</td>
           </tr>
         </tbody>
       </table>
