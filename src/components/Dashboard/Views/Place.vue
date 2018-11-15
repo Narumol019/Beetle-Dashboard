@@ -40,7 +40,7 @@
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  import {firestore} from './firebase.js'
+
   const itemColumns = ['Name']
 
   export default {
@@ -131,13 +131,6 @@
         const name = this.$route.params.title
         return name
       }
-    },
-    async beforeMount () {
-      const collections = await firestore.collection('place').doc(this.placeName).collection('boxs').get()
-      collections.forEach(async (data) => {
-        this.table1.data.push(data.data())
-        console.log(this.table1.data)
-      })
     }
   }
 

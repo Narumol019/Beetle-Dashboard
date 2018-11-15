@@ -14,9 +14,8 @@
           The Beetle  
           
         </a>
-        
-         
       </div>
+      
       <slot>
 
       </slot>

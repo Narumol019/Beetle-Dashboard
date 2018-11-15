@@ -2,6 +2,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
+          <div class="search-wrapper" align='right'> <span class="ti-search"></span>
+            <input type="text" v-model="search" placeholder="Filter.."/>
+          </div>
           <paper-table :title="table1.title" :sub-title="table1.subTitle" :data="places" :columns="table1.columns">
 
           </paper-table>
@@ -18,9 +21,9 @@
    
 </template>
 <script>
-  import {firestore} from './firebase.js'
+
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const tableColumns = ['Name', 'Place', 'Open', 'Close', 'Price']
+  const tableColumns = ['Branch', 'Boxs', 'Number Phone', 'Checkin', 'Checkout', 'Pice', 'Status']
   const tableData = []
 
   export default {
@@ -37,19 +40,11 @@
         boxs: []
       }
     },
-    async created () {
-      const collections = await firestore.collection('place').get()
-      collections.forEach(async (collection) => {
-        const place = await firestore.collection('place').doc(collection.id).collection('boxs').get()
-        place.forEach(async (x) => {
-          console.log(x.data())
-          this.places.push(x.data())
+    computed: {
+      filteredList () {
+        return this.postList.filter(post => {
+          return post.title.toLowerCase().includes(this.search.toLowerCase())
         })
-      })
-    },
-    firestore () {
-      return {
-        place: firestore.collection('place')
       }
     }
 }

@@ -18,10 +18,11 @@
    
   </div>
 </template>
+
 <script>
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
-  import {firestore} from './firebase.js'
+
   export default {
     components: {
       StatsCard,
