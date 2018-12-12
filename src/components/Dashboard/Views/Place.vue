@@ -66,12 +66,7 @@
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-<<<<<<< HEAD
   import API from '../../API/httpCommon'
-=======
-
-  const itemColumns = ['Name']
->>>>>>> 60596bad8bd922a76fe1fdb70e2b1767eecc09db
 
   export default {
     components: {
@@ -152,7 +147,6 @@
         const name = this.$route.params.title
         return name
       }
-<<<<<<< HEAD
     },
     async mounted () {
       this.loading = true
@@ -167,8 +161,6 @@
       this.initailChart()
       console.log(branchDetail)
       this.loading = false
-=======
->>>>>>> 60596bad8bd922a76fe1fdb70e2b1767eecc09db
     }
   }
 
