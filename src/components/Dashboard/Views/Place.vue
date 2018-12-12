@@ -16,7 +16,7 @@
         </stats-card>
       </div>
 
-      <div class="col-lg-4 col-sm-4" v-for="stats in statsCards" :key="stats.title" @click="toTablelist">
+      <div class="col-lg-4 col-sm-4" v-for="stats in statsCards" :key="stats.title">
         <stats-card style="text-align: center">
           <div slot="header">
             {{stats.title}}
@@ -84,22 +84,6 @@
           data: []
         },
         statsCards: [],
-        activityChart: {
-          data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-            series: [
-              [542, 543, 520, 680, 653, 753, 326, 434, 568, 610, 756, 895],
-              [230, 293, 380, 480, 503, 553, 600, 664, 698, 710, 736, 795]
-            ]
-          },
-          options: {
-            seriesBarDistance: 10,
-            axisX: {
-              showGrid: false
-            },
-            height: '245px'
-          }
-        },
         usageChart: {
           data: {
             labels: [],
@@ -121,9 +105,6 @@
       }
     },
     methods: {
-      toTablelist: function () {
-        this.$router.push({path: '/admin/usage/' + this.$route.params.id})
-      },
       initialCard: function () {
         let nob = {
           type: 'warning',
@@ -159,7 +140,6 @@
       this.branch = branchDetail.data.branch[0].name
       this.initialCard()
       this.initailChart()
-      console.log(branchDetail)
       this.loading = false
     }
   }

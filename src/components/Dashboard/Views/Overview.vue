@@ -12,7 +12,7 @@
           <div class="numbers" slot="content">
             {{stats.name}}
             <div class="logo-img">
-              <img src="static/img/logo.png" alt>
+              <img src="./logo.png" alt>
             </div>
           </div>
         </stats-card>

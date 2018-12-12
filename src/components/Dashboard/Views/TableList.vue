@@ -40,7 +40,6 @@
       let transactions = await API.transactions()
       this.transactions = transactions.data
       this.table1.data = this.transactions
-      console.log(transactions)
     },
     methods: {
       search: function () {
@@ -49,11 +48,9 @@
           let filter = this.filter
           let filterd = data.filter((e) => {
             if (e.name.toLowerCase().startsWith(filter)) {
-              console.log(e)
               return e
             }
           })
-          console.log(filterd)
           this.table1.data = filterd
         } else if (this.filter.length === 0) {
           this.table1.data = this.transactions
