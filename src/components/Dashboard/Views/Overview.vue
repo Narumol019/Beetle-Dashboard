@@ -22,7 +22,9 @@
     <loading :show="loading"></loading>
   </div>
 </template>
+
 <script>
+<<<<<<< HEAD
 import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
 import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
 import API from '../../API/httpCommon'
@@ -57,6 +59,55 @@ export default {
       this.loading = false
     } catch (error) {
       console.log(error)
+=======
+  import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
+  import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
+
+  export default {
+    components: {
+      StatsCard,
+      ChartCard
+    },
+    /**
+     * Chart data used to render stats, charts. Should be replaced with server data
+     */
+    data () {
+      return {
+        places: [],
+        statsCards: [
+          {
+            type: 'warning',
+            title: 'Patong',
+            value: 'Beetle'
+          },
+          {
+            type: 'success',
+            title: 'Rawai',
+            value: 'Beetle'
+          },
+          {
+            type: 'danger',
+            title: 'Kata',
+            value: 'Beetle'
+          },
+          {
+            type: 'danger',
+            title: 'Karon',
+            value: 'Beetle'
+          },
+          {
+            type: 'danger',
+            title: 'Nai-yang',
+            value: 'Beetle'
+          }
+        ]
+      }
+    },
+    methods: {
+      toTablelist: function (title) {
+        this.$router.push({path: 'place/' + title})
+      }
+>>>>>>> 60596bad8bd922a76fe1fdb70e2b1767eecc09db
     }
   }
 }
