@@ -1,8 +1,8 @@
 {
-  "name": "vue-admin-paper-dashboard",
-  "version": "1.0.0",
-  "description": "A sample admin dashboard based on paper dashboard UI template",
-  "author": "cristian.jora <cristian.jora@corebuild.eu>",
+  "name": "The-Beetle-Dashboard",
+  "version": "0.6.0",
+  "description": "The beetle dashboard to show summarize data of branches",
+  "author": "The-Beetle-Group",
   "private": true,
   "scripts": {
     "dev": "cross-env ENABLE_ESLINT=true node build/dev-server.js",
@@ -13,12 +13,16 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
     "chartist": "^0.10.1",
     "firebase": "^5.4.1",
+    "microgear": "^0.8.1",
     "v-click-outside": "0.0.8",
     "vue": "^2.3.0",
+    "vue-axios": "^2.1.4",
     "vue-firestore": "^0.2.11",
+    "vue-full-loading": "^1.2.1",
     "vue-router": "^2.2.0"
   },
   "devDependencies": {

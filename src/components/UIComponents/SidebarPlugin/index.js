@@ -12,11 +12,6 @@ const SidebarStore = {
       name: 'Usage log',
       icon: 'ti-bar-chart-alt',
       path: '/admin/table-list'
-    },
-    {
-      name: 'Logout',
-      icon: 'ti-power-off',
-      path: '/admin/icons'
     }
   ],
   displaySidebar (value) {

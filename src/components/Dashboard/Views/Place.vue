@@ -1,15 +1,39 @@
 <template>
-  <div>
+  <div v-if="loading == false">
 
     <!--Stats cards-->
+
     <div class="row">
-      <div class="col-lg-4 col-sm-6" v-for="stats in statsCards" :key="stats.title" @click="toTablelist">
-        <stats-card>
-          <div class="numbers" slot="content">
-            <router-link :to="{name : 'list'}">
-            <p>{{stats.title}}</p>
+
+      <div class="col-lg-4 col-sm-4">
+        <stats-card style="text-align: center">
+          <div slot="header">
+            Branch
+          </div>
+          <div slot="content">
+            {{branch}}
+          </div>
+        </stats-card>
+      </div>
+
+      <div class="col-lg-4 col-sm-4" v-for="stats in statsCards" :key="stats.title" @click="toTablelist">
+        <stats-card style="text-align: center">
+          <div slot="header">
+            {{stats.title}}
+          </div>
+          <div slot="content">
             {{stats.value}}
-            </router-link>
+          </div>
+        </stats-card>
+      </div>
+
+      <div class="col-lg-4 col-sm-4">
+        <stats-card style="text-align: center">
+          <div slot="header">
+            Total income
+          </div>
+          <div slot="content">
+            {{total}}
           </div>
         </stats-card>
       </div>
@@ -17,31 +41,32 @@
 
     <!--Charts-->
     <div class="row">
-
-      <div class="col-md-6 ">
+      <div class="col-md-12 ">
         <div class="card" >
-          <paper-table :title="table1.title" :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
+          <paper-table style="font-size: 150%" :title="'Box list'" :sub-title="boxes.subTitle" :data="boxes.data" :columns="boxes.columns">
             
           </paper-table>
         </div>
       </div>
+    </div> 
 
-      <div class="col-md-6 col-xs-12">
-        <chart-card :chart-data="activityChart.data" :chart-options="activityChart.options">
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <chart-card :chart-data="usageChart.data" :chart-options="usageChart.options">
           <h4 class="title" slot="title">Usage</h4>
-          <span slot="subTitle"> Channel one news viewing figures </span>
         </chart-card>
       </div>
-
     </div> 
+
+    <!-- Loading -->
   </div>
 </template>
 <script>
   import StatsCard from 'components/UIComponents/Cards/StatsCard.vue'
   import ChartCard from 'components/UIComponents/Cards/ChartCard.vue'
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  import {firestore} from './firebase.js'
-  const itemColumns = ['Name']
+  import API from '../../API/httpCommon'
 
   export default {
     components: {
@@ -54,57 +79,14 @@
      */
     data () {
       return {
-        table1: {
-          columns: [...itemColumns],
+        boxes: {
+          columns: ['Name', 'Price', 'Size', 'Status'],
           data: []
         },
-        statsCards: [
-          {
-            type: 'warning',
-            icon: 'ti-server',
-            title: 'Number of box',
-            value: '15'
-          },
-          {
-            type: 'success',
-            icon: 'ti-wallet',
-            title: 'Today Used',
-            value: '150'
-          },
-          {
-            type: 'danger',
-            icon: 'ti-pulse',
-            title: 'Peek Time',
-            value: '11:30 AM'
-          }
-        ],
-        usersChart: {
-          data: {
-            labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
-            series: [
-              [287, 385, 490, 562, 594, 626, 698, 895, 952],
-              [67, 152, 193, 240, 387, 435, 535, 642, 744],
-              [23, 113, 67, 108, 190, 239, 307, 410, 410]
-            ]
-          },
-          options: {
-            low: 0,
-            high: 1000,
-            showArea: true,
-            height: '245px',
-            axisX: {
-              showGrid: false
-            },
-            lineSmooth: this.$Chartist.Interpolation.simple({
-              divisor: 3
-            }),
-            showLine: true,
-            showPoint: false
-          }
-        },
+        statsCards: [],
         activityChart: {
           data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
             series: [
               [542, 543, 520, 680, 653, 753, 326, 434, 568, 610, 756, 895],
               [230, 293, 380, 480, 503, 553, 600, 664, 698, 710, 736, 795]
@@ -117,13 +99,47 @@
             },
             height: '245px'
           }
-        }
-
+        },
+        usageChart: {
+          data: {
+            labels: [],
+            series: [[]]
+          },
+          options: {
+            seriesBarDistance: 10,
+            axisX: {
+              showGrid: false
+            },
+            height: '245px'
+          }
+        },
+        transactions: [],
+        loading: true,
+        usage: [],
+        total: null,
+        branch: null
       }
     },
     methods: {
       toTablelist: function () {
-        this.$routes.push({name: 'list'})
+        this.$router.push({path: '/admin/usage/' + this.$route.params.id})
+      },
+      initialCard: function () {
+        let nob = {
+          type: 'warning',
+          icon: 'ti-server',
+          title: 'Number of box',
+          value: this.boxes.data.length.toString()
+        }
+        this.statsCards.push(nob)
+      },
+      initailChart: function () {
+        this.usage.forEach((e, i) => {
+          let label = e.checkin.split('T')[0]
+          let count = e.totalrows
+          this.usageChart.data.labels[i] = label
+          this.usageChart.data.series[0][i] = count
+        })
       }
     },
     computed: {
@@ -132,12 +148,19 @@
         return name
       }
     },
-    async beforeMount () {
-      const collections = await firestore.collection('place').doc(this.placeName).collection('boxs').get()
-      collections.forEach(async (data) => {
-        this.table1.data.push(data.data())
-        console.log(this.table1.data)
-      })
+    async mounted () {
+      this.loading = true
+      const id = this.$route.params.id
+      let branchDetail = await API.branch(id)
+      this.boxes.data = branchDetail.data.boxes
+      this.usage = branchDetail.data.usage
+      this.transactions = branchDetail.data.transactions
+      this.total = branchDetail.data.total[0].sum
+      this.branch = branchDetail.data.branch[0].name
+      this.initialCard()
+      this.initailChart()
+      console.log(branchDetail)
+      this.loading = false
     }
   }
 

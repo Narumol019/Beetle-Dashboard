@@ -15,11 +15,35 @@
   <link type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="static/css/themify-icons.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.netpie.io/microgear.js"></script>
 </head>
 <body>
 <div class="wrapper" id="app">
 
 </div>
 
+<script>
+  const APPID = 'TheBeetleBeachBox'
+  const KEY = '535vxXWIX3Uz66A'
+  const SECRET = 'GHCZ3Ohksf7lvItgeFQQ2QUjF'
+
+  var microgear = Microgear.create({
+    key: KEY,
+    secret: SECRET
+  })
+
+  microgear.on('connected', function () {
+    console.log('Connected...')
+  })
+
+  microgear.on('message', function (topic, body) {
+    console.log('incoming : ' + topic + ' : ' + body)
+  })
+
+  microgear.on('closed', function () {
+    console.log('Closed...')
+  })
+
+  microgear.connect(APPID)</script>
 </body>
 </html>

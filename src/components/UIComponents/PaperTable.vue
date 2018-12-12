@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <tr v-for="item in data" :key="item.data">
-            <td style="text-align: center;" v-for="column in columns" v-if="hasValue(item, column)" :key="column.colums">{{itemValue(item, column)}}</td>
+            <td @click="toBoxDetail(item.id)" style="text-align: center;" v-for="column in columns" v-if="hasValue(item, column)" :key="column.colums">{{itemValue(item, column)}}</td>
           </tr>
         </tbody>
       </table>
@@ -50,6 +50,9 @@
       },
       itemValue (item, column) {
         return item[column.toLowerCase()]
+      },
+      toBoxDetail: function (boxid) {
+        this.$router.push({path: '/admin/boxes/' + boxid})
       }
     }
   }

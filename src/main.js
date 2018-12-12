@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import vClickOutside from 'v-click-outside'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 // Plugins
 import GlobalComponents from './gloablComponents'
@@ -23,6 +25,7 @@ Vue.use(GlobalComponents)
 Vue.use(vClickOutside)
 Vue.use(Notifications)
 Vue.use(SideBar)
+Vue.use(VueAxios, axios)
 
 // configure router
 const router = new VueRouter({

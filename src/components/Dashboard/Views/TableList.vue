@@ -1,26 +1,24 @@
 <template>
+  <div>
+    <div class="row" style="margin-bottom: 15px">
+      <div class="col-md-4 col-lg-4" style="text-align: right"></div>
+      <div class="col-md-4 col-lg-4" style="text-align: right"></div>
+      <div class="col-md-4 col-lg-4" style="text-align: right">
+        <input @keyup="search" class="form-control" v-model="filter" placeholder="Filter">
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <paper-table :title="table1.title" :sub-title="table1.subTitle" :data="places" :columns="table1.columns">
-
-          </paper-table>
-          <div v-for="place in places" :key="place.places">
-              {{place.id}}
-          </div>
-          <div v-for="box in boxs" :key="box.boxs">
-              {{box.id}}
-          </div>
+          <paper-table :title="table1.title" :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns"/>
         </div>
       </div>
-
-    </div>
-   
+    </div></div>
 </template>
 <script>
-  import {firestore} from './firebase.js'
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const tableColumns = ['Name', 'Place', 'Open', 'Close', 'Price']
+  import API from '../../API/httpCommon'
+  const tableColumns = ['Name', 'Branch', 'Checkin', 'Checkout', 'Price', 'Status']
   const tableData = []
 
   export default {
@@ -33,23 +31,33 @@
           columns: [...tableColumns],
           data: [...tableData]
         },
-        places: [],
-        boxs: []
+        transactions: [],
+        boxs: [],
+        filter: ''
       }
     },
-    async created () {
-      const collections = await firestore.collection('place').get()
-      collections.forEach(async (collection) => {
-        const place = await firestore.collection('place').doc(collection.id).collection('boxs').get()
-        place.forEach(async (x) => {
-          console.log(x.data())
-          this.places.push(x.data())
-        })
-      })
+    async beforeMount () {
+      let transactions = await API.transactions()
+      this.transactions = transactions.data
+      this.table1.data = this.transactions
+      console.log(transactions)
     },
-    firestore () {
-      return {
-        place: firestore.collection('place')
+    methods: {
+      search: function () {
+        if (this.filter.length > 0) {
+          let data = this.transactions
+          let filter = this.filter
+          let filterd = data.filter((e) => {
+            if (e.name.toLowerCase().startsWith(filter)) {
+              console.log(e)
+              return e
+            }
+          })
+          console.log(filterd)
+          this.table1.data = filterd
+        } else if (this.filter.length === 0) {
+          this.table1.data = this.transactions
+        }
       }
     }
 }

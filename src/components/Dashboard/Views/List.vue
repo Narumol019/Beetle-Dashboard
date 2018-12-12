@@ -14,158 +14,164 @@
 <script>
   import PaperTable from 'components/UIComponents/PaperTable.vue'
   const tableColumns = ['Name', 'Place', 'Open', 'Close', 'Price']
-  const tableData = [{
-    name: 'beetle 1',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 2',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 3',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 4',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 5',
-    place: 'Patong',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 1',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 2',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 3',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 4',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 5',
-    place: 'Rawai',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 1',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 2',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 3',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 4',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 5',
-    place: 'Kata',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 1',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 2',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 3',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 4',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  },
-  {
-    name: 'beetle 5',
-    place: 'Nai-yang',
-    open: '14:30:05',
-    close: '14:32:55',
-    price: 20
-  }]
+  // const tableData = [{
+  //   name: 'beetle 1',
+  //   place: 'Patong',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 2',
+  //   place: 'Patong',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 3',
+  //   place: 'Patong',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 4',
+  //   place: 'Patong',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 5',
+  //   place: 'Patong',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 1',
+  //   place: 'Rawai',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 2',
+  //   place: 'Rawai',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 3',
+  //   place: 'Rawai',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 4',
+  //   place: 'Rawai',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 5',
+  //   place: 'Rawai',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 1',
+  //   place: 'Kata',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 2',
+  //   place: 'Kata',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 3',
+  //   place: 'Kata',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 4',
+  //   place: 'Kata',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 5',
+  //   place: 'Kata',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 1',
+  //   place: 'Nai-yang',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 2',
+  //   place: 'Nai-yang',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 3',
+  //   place: 'Nai-yang',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 4',
+  //   place: 'Nai-yang',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // },
+  // {
+  //   name: 'beetle 5',
+  //   place: 'Nai-yang',
+  //   open: '14:30:05',
+  //   close: '14:32:55',
+  //   price: 20
+  // }]
 
   export default {
+    props: {
+      data: Array
+    },
     components: {
       PaperTable
     },
     data () {
       return {
         table1: {
-          columns: [...tableColumns],
-          data: [...tableData]
+          columns: [...tableColumns]
+          // data: [...tableData]
         }
       }
+    },
+    mounted () {
+      console.log('...')
     }
 }
 </script>
